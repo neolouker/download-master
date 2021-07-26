@@ -25,12 +25,12 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="DownloadMaster.rc">
+    <ResourceCompile Include="DownloadMaster1.rc">
       <Filter>Ressourcendateien</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\Downloads\console.ico">
+    <Image Include="downloadmaster.ico">
       <Filter>Ressourcendateien</Filter>
     </Image>
   </ItemGroup>

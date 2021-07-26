@@ -32,13 +32,13 @@ void option2();
 
 int main() {
 	int choice{};
-	SetConsoleTitle(L"--DownloadMaster V4 by Neolouker--");
+	SetConsoleTitle(L"--DownloadMaster Beta V4 by Neolouker--");
 	hidecursor();
 	system("Color A");
 	screen();
-	std::cout << "(1) Calculate needed time for a certain download" << std::endl;
-	std::cout << "(2) Calculate how much can be downloaded in a certain time" << std::endl << std::endl;
-	std::cout << "Your choice: ";
+	std::cout << "(1) Calculate duration" << std::endl;
+	std::cout << "(2) Calculate maximum download size" << std::endl << std::endl;
+	std::cout << "Choice: ";
 	std::cin >> choice;
 
 	switch (choice)
