@@ -1,5 +1,3 @@
-// File-Reading Render Animation
-// Main Decision Switch-case
 // Commenting Code
 // Use OOP when learned
 // Exceptions
@@ -9,21 +7,13 @@
 #include <chrono>
 #include <Windows.h>
 #include <thread>
+#include <fstream>
 
-const std::string l1{ R"( _____                      _                 _ __  __           _            )" };
-const std::string l2{ R"(|  __ \                    | |               | |  \/  |         | |           )" };
-const std::string l3{ R"(| |  | | _____      ___ __ | | ___   __ _  __| | \  / | __ _ ___| |_ ___ _ __ )" };
-const std::string l4{ R"(| |  | |/ _ \ \ /\ / / '_ \| |/ _ \ / _` |/ _` | |\/| |/ _` / __| __/ _ \ '__|)" };
-const std::string l5{ R"(| |__| | (_) \ V  V /| | | | | (_) | (_| | (_| | |  | | (_| \__ \ ||  __/ |   )" };
-const std::string l6{ R"(|_____/ \___/ \_/\_/ |_| |_|_|\___/ \__,_|\__,_|_|  |_|\__,_|___/\__\___|_|   )" };
-const std::string l7{ R"(________________________________________________________________________________________________________)" };
-const std::string dashes{ "--------------------------------------------------------------------------------------------------------" };
-static int flag{};
+const std::string dashes{ "-----------------------------------------------------------------------------------------------------------------------" };
 const int tolerance{};
 
 void calc_time(float download_size, float download_speed);
 float calc_size(float download_time, float download_speed);
-void render(std::string word, int time);
 void screen();
 void hidecursor();
 void clearScreen();
@@ -32,7 +22,7 @@ void option2();
 
 int main() {
 	int choice{};
-	SetConsoleTitle(L"--DownloadMaster Beta V4 by Neolouker--");
+	SetConsoleTitle(L"--DownloadMaster Beta by Neolouker--");
 	hidecursor();
 	system("Color A");
 	screen();
@@ -40,6 +30,7 @@ int main() {
 	std::cout << "(2) Calculate maximum download size in a given time" << std::endl << std::endl;
 	std::cout << "Choice: ";
 	std::cin >> choice;
+	std::cout << dashes << std::endl << std::endl;
 
 	switch (choice)
 	{
@@ -50,7 +41,7 @@ int main() {
 		option2();
 		break;
 	default:
-		std::cout << "ERROR Entered wrong number" << std::endl;	
+		std::cout << "ERROR Entered wrong number" << std::endl;
 		system("pause");
 		break;
 	}
@@ -104,10 +95,10 @@ void calc_time(float download_size, float download_speed) {	 // Calculation of t
 	std::chrono::seconds seconds_c(seconds);
 	std::cout << "Constant Download Time:  " << std::chrono::duration_cast<std::chrono::hours>(seconds_c).count() << ':'
 		<< std::chrono::duration_cast<std::chrono::minutes>(seconds_c).count() % 60 << ':'
-		<< seconds_c.count() % 60 << "	| If the actual speed stays unchanged throughout the download" << std::endl;
+		<< seconds_c.count() % 60 << "	| If the actual speed stays unchanged during the download" << std::endl;
 	std::cout << "Estimated Download Time: " << std::chrono::duration_cast<std::chrono::hours>(seconds_s).count() << ':'
 		<< std::chrono::duration_cast<std::chrono::minutes>(seconds_s).count() % 60 << ':'
-		<< seconds_s.count() % 60 << "	| If the actual speed changes by 5% throughout the download  " << std::endl << std::endl;
+		<< seconds_s.count() % 60 << "	| If the actual speed slowes down by 5% during the download  " << std::endl << std::endl;
 }
 
 float calc_size(float download_time, float download_speed) {
@@ -116,48 +107,19 @@ float calc_size(float download_time, float download_speed) {
 	return download_speed * download_time;
 }
 
-void render(std::string word, int time = 10) {	// Render Animation at startup
-	std::chrono::milliseconds timespan(time);
-	for (int i{}; i <= word.length(); i++) {
-		if (GetAsyncKeyState(VK_SPACE) & 0x8000 || GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
-			flag = 1;
-			clearScreen();
-			break;
-		}
-		else if (flag == 0) {
-			std::cout << word[i];
-			std::this_thread::sleep_for(timespan);
-		}
-		else {
-			clearScreen();
-			break;
-		}
-	}
-
-	std::cout << "\n";
-}
-
 void screen() {
-	render(l1);
-	render(l2);
-	render(l3);
-	render(l4);
-	render(l5);
-	render(l6);
-	render(l7);
-
-	if (flag == 1) {
-		clearScreen();
-		std::cout << l1 << std::endl;
-		std::cout << l2 << std::endl;
-		std::cout << l3 << std::endl;
-		std::cout << l4 << std::endl;
-		std::cout << l5 << std::endl;
-		std::cout << l6 << std::endl;
-		std::cout << l7 << std::endl;
+	std::ifstream renderfile("screen.txt");
+	std::string line;
+	if (renderfile.is_open()) {
+		while (std::getline(renderfile, line)) {
+			std::cout << line << std::endl;
+		}
 	}
-
-	std::cout << "\n";
+	else {
+		std::cout << "Couldn't open file" << std::endl;
+	}
+	std::cout << dashes << std::endl << std::endl;
+	renderfile.close();
 }
 
 void hidecursor()
