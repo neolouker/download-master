@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Von Microsoft Visual C++ generierte Includedatei.
-// Verwendet durch DownloadMaster1.rc
+// Verwendet durch DownloadMaster.rc
 //
 #define IDI_ICON1                       101
 

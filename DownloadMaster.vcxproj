@@ -145,7 +145,7 @@
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="DownloadMaster1.rc" />
+    <ResourceCompile Include="DownloadMaster.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="downloadmaster.ico" />

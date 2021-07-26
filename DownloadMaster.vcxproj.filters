@@ -25,7 +25,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="DownloadMaster1.rc">
+    <ResourceCompile Include="DownloadMaster.rc">
       <Filter>Ressourcendateien</Filter>
     </ResourceCompile>
   </ItemGroup>

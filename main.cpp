@@ -36,8 +36,8 @@ int main() {
 	hidecursor();
 	system("Color A");
 	screen();
-	std::cout << "(1) Calculate duration" << std::endl;
-	std::cout << "(2) Calculate maximum download size" << std::endl << std::endl;
+	std::cout << "(1) Calculate duration of a given download" << std::endl;
+	std::cout << "(2) Calculate maximum download size in a given time" << std::endl << std::endl;
 	std::cout << "Choice: ";
 	std::cin >> choice;
 
