@@ -14,7 +14,7 @@ const int tolerance{};
 
 void calc_time(float download_size, float download_speed);
 float calc_size(float download_time, float download_speed);
-void screen();
+void render_screen();
 void hidecursor();
 void clearScreen();
 void option1();
@@ -25,7 +25,7 @@ int main() {
 	SetConsoleTitle(L"--DownloadMaster Beta by Neolouker--");
 	hidecursor();
 	system("Color A");
-	screen();
+	render_screen();
 	std::cout << "(1) Calculate duration of a given download" << std::endl;
 	std::cout << "(2) Calculate maximum download size in a given time" << std::endl << std::endl;
 	std::cout << "Choice: ";
@@ -59,7 +59,7 @@ void option1() {
 	std::cout << "Enter Download Speed in MB/s:    |	";
 	std::cin >> download_speed;
 	download_speed_mbit = download_speed * 8;
-	std::cout << "Your Download Speed in mbit/s:   |	" << download_speed_mbit << std::endl;
+	std::cout << "Your Download Speed in mbit/s:   |	" << download_speed_mbit << std::endl << std::endl;
 	std::cout << dashes << std::endl << std::endl;
 	calc_time(download_size, download_speed);
 	std::cout << dashes << std::endl << std::endl;
@@ -76,7 +76,7 @@ void option2() {
 	std::cout << "Enter Download Speed in MB/s:    |	";
 	std::cin >> download_speed;
 	download_speed_mbit = download_speed * 8;
-	std::cout << "Your Download Speed in mbit/s:   |	" << download_speed_mbit << std::endl;
+	std::cout << "Your Download Speed in mbit/s:   |	" << download_speed_mbit << std::endl << std::endl;
 	std::cout << dashes << std::endl << std::endl;
 	float download_size = calc_size(download_time, download_speed);
 	std::cout << "Estimated Download Size in GB:   |	" << download_size << std::endl << std::endl;
@@ -107,19 +107,19 @@ float calc_size(float download_time, float download_speed) {
 	return download_speed * download_time;
 }
 
-void screen() {
-	std::ifstream renderfile("screen.txt");
-	std::string line;
-	if (renderfile.is_open()) {
-		while (std::getline(renderfile, line)) {
-			std::cout << line << std::endl;
-		}
-	}
-	else {
-		std::cout << "Couldn't open file" << std::endl;
+void render_screen() {
+	std::string menu_printout[6]{};
+	menu_printout[0] = R"(  _____                      _                 _ __  __           _            )";
+	menu_printout[1] = R"( |  __ \                    | |               | |  \/  |         | |           )";
+	menu_printout[2] = R"( | |  | | _____      ___ __ | | ___   __ _  __| | \  / | __ _ ___| |_ ___ _ __ )";
+	menu_printout[3] = R"( | |  | |/ _ \ \ /\ / / '_ \| |/ _ \ / _` |/ _` | |\/| |/ _` / __| __/ _ \ '__|)";
+	menu_printout[4] = R"( | |__| | (_) \ V  V /| | | | | (_) | (_| | (_| | |  | | (_| \__ \ ||  __/ |   )";
+	menu_printout[5] = R"( |_____/ \___/ \_/\_/ |_| |_|_|\___/ \__,_|\__,_|_|  |_|\__,_|___/\__\___|_|   )";
+	for (int i = 0; i < std::size(menu_printout); i++) {
+		std::cout << menu_printout[i] << std::endl;
+		std::this_thread::sleep_for(std::chrono::milliseconds(375));
 	}
 	std::cout << dashes << std::endl << std::endl;
-	renderfile.close();
 }
 
 void hidecursor()
