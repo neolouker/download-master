@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="DownloadMaster.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,7 +35,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="screen.txt">
+    <Text Include="history.txt">
       <Filter>Ressourcendateien</Filter>
     </Text>
   </ItemGroup>
